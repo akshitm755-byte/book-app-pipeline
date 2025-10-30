@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Popular Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>📚 Popular Books</h1>
+    <h3>Genres & Tags</h3>
+    <div class="tags-container">
+        {% for tag in tags %}
+            <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    <h2>Book Titles</h2>
+    <div class="book-grid">
+        {% for book in books %}
+            <div class="book-tile" onclick="openModal('{{ book.title }}', '{{ book.synopsis }}')">
+                {{ book.title }}
+            </div>
+        {% endfor %}
+    </div>
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalSynopsis"></p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
